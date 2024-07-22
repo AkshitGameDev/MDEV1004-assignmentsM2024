@@ -51,13 +51,13 @@ class MainActivity : AppCompatActivity() {
             detailsActivityResultLauncher.launch(intent)
         }
 
-        binding.addButton.setOnClickListener {
-            // go to the Details Activity for adding a new movie
-            val intent = Intent(this, DetailsActivity::class.java).apply {
-                putExtra("IS_UPDATE", false)
-            }
-            detailsActivityResultLauncher.launch(intent)
-        }
+//        binding.addButton.setOnClickListener {
+//            // go to the Details Activity for adding a new movie
+//            val intent = Intent(this, DetailsActivity::class.java).apply {
+//                putExtra("IS_UPDATE", false)
+//            }
+//            detailsActivityResultLauncher.launch(intent)
+//        }
 
         // Setup swipe to delete
         val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT)
