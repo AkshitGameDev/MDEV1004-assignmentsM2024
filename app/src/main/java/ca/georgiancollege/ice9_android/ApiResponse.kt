@@ -1,4 +1,4 @@
-package com.example.ice8_android
+package ca.georgiancollege.ice9_android
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -7,5 +7,6 @@ import com.squareup.moshi.JsonClass
 data class ApiResponse<T>(
     @Json(name = "success") val success: Boolean,
     @Json(name = "msg") val message: String,
-    @Json(name = "data") val data: T
+    @Json(name = "data") val data: T,
+    @Json(name = "token") val token: String? = null // we only need a token for auth
 )

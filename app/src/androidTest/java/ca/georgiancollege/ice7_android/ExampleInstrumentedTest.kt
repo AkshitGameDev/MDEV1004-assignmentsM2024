@@ -1,4 +1,4 @@
-package ca.georgiancollege.ice8_android
+package ca.georgiancollege.ice7_android
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

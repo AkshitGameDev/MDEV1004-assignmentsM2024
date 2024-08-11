@@ -1,6 +1,8 @@
-package com.example.ice8_android
+package ca.georgiancollege.ice9_android
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -9,14 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ice8_android.R
-import com.example.ice8_android.databinding.ActivityMainBinding
+import ca.georgiancollege.ice9_android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MovieViewModel by viewModels()
     private lateinit var firstAdapter: FirstAdapter
     private lateinit var movieList: MutableList<Movie>
+    private lateinit var sharedPreferences: SharedPreferences
 
     private val detailsActivityResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
 
         // Initialize the adapter with an empty list
         firstAdapter = FirstAdapter(emptyList())
@@ -51,13 +55,25 @@ class MainActivity : AppCompatActivity() {
             detailsActivityResultLauncher.launch(intent)
         }
 
-//        binding.addButton.setOnClickListener {
-//            // go to the Details Activity for adding a new movie
-//            val intent = Intent(this, DetailsActivity::class.java).apply {
-//                putExtra("IS_UPDATE", false)
-//            }
-//            detailsActivityResultLauncher.launch(intent)
-//        }
+        binding.addButton.setOnClickListener {
+            // go to the Details Activity for adding a new movie
+            val intent = Intent(this, DetailsActivity::class.java).apply {
+                putExtra("IS_UPDATE", false)
+            }
+            detailsActivityResultLauncher.launch(intent)
+        }
+
+        binding.logoutButton.setOnClickListener {
+            // removing the auth_token
+            val editor = sharedPreferences.edit()
+            editor.putString("auth_token", "")
+            editor.apply()
+
+            // navigate back to the Login
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // Setup swipe to delete
         val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT)

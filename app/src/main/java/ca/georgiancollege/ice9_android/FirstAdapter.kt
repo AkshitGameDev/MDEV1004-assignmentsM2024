@@ -1,13 +1,11 @@
-package com.example.ice8_android
+package ca.georgiancollege.ice9_android
 
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ice8_android.R
-import com.example.ice8_android.databinding.TextRowItemBinding
-
+import ca.georgiancollege.ice9_android.databinding.TextRowItemBinding
 
 class FirstAdapter(private var dataSet: List<Movie>) :
 RecyclerView.Adapter<FirstAdapter.ViewHolder>()

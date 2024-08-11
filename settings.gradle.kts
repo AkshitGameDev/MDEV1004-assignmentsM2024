@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ICE8-Android"
+rootProject.name = "ICE9-Android"
 include(":app")

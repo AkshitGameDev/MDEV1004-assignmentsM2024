@@ -1,4 +1,4 @@
-package ca.georgiancollege.ice8_android
+package ca.georgiancollege.ice7_android
 
 import org.junit.Test
 
